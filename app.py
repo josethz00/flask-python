@@ -12,6 +12,7 @@ class Todo(db.Model):
     date_created = db.Column(db.DateTime, default=datetime.utcnow())
 
     def __repr__(self):
+        
         return '<Task %r>' % self.id
 
 
@@ -38,6 +39,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
+        print('Deleted items')
         return redirect('/')
     except:
         return 'There was a problem deleting that task'
@@ -51,6 +53,7 @@ def update(id):
 
         try:
             db.session.commit()
+            print('Updated items')
             return redirect('/')
         except:
             return 'There was an issue updating your task'
